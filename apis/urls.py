@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .apis import GalleryViewSet
+from .api import GalleryViewSet
 
 routes = routers.DefaultRouter()
 routes.register('api/gallery', GalleryViewSet, basename='gallery')
