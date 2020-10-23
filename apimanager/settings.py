@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apis',
-    'rest_framework'
+    'rest_framework',
+    'users',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -128,5 +130,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #media files
-MEDIA_ROOT = BASE_DIR/"shopapi/assets"
-MEDIA_URL = '/assets/'
+MEDIA_ROOT = BASE_DIR/"media"
+MEDIA_URL = '/media/'
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
+    "DATETIME_FORMAT": "%Y-%m-%d, %H:%M:%S.",
+    "DATE_INPUT_FORMATS": ["%d-%m-%Y","%d/%m/%Y","%Y-%m-%d", "%Y/%m/%d"],
+    "DATE_FORMAT ": "%d-%m-%Y",
+}
