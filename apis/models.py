@@ -9,3 +9,15 @@ class Gallery(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.title}"
+
+
+class Message(models.Model): 
+    subject = models.CharField(max_length=250)
+    message = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(max_length=30)
+    Last_name = models.CharField(max_length=30)
+    checked = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.first_name}: {self.subject}, date added: {self.date_added}"
