@@ -7,7 +7,13 @@ class GallerySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class MessageSerializer(serializers.ModelSerializer):
+class WriteMessageSerializer(serializers.ModelSerializer):
     class Meta :
         model = Message
-        fields = '__all__'
+        fields = ['id', 'name', 'subject', 'message', 'date_added']
+
+class ReadMessageSerializer(serializers.ModelSerializer):
+    class Meta :
+        model = Message
+        fields = ['id', 'name', 'subject', 'message', 'date_added', 'checked']
+        read_only_fields =  ['id', 'name', 'subject', 'message', 'date_added']

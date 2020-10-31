@@ -23,7 +23,7 @@ class LoginApi(generics.GenericAPIView):
             user = serializer.validated_data
             _, token = AuthToken.objects.create(user)
             return Response({
-                # 'user':UserSerializer(user, context=self.get_serializer_context()).data,
+                'user':UserSerializer(user, context=self.get_serializer_context()).data,
                 'token':token
             }, status=status.HTTP_202_ACCEPTED)
         else:
