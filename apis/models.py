@@ -14,6 +14,7 @@ class Gallery(models.Model):
 class Message(models.Model): 
     subject = models.CharField(max_length=250, blank=True, null=True)
     message = models.TextField()
+    email = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=60)
     checked = models.BooleanField(default=False)

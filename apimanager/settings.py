@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     'knox',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -141,3 +143,8 @@ REST_FRAMEWORK = {
     "DATE_INPUT_FORMATS": ["%d-%m-%Y","%d/%m/%Y","%Y-%m-%d", "%Y/%m/%d"],
     "DATE_FORMAT ": "%d-%m-%Y",
 }
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://robin-shrestha.github.io",
+    "https://robin-shrestha.github.io",
+]

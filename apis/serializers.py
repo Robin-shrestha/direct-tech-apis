@@ -10,10 +10,10 @@ class GallerySerializer(serializers.ModelSerializer):
 class WriteMessageSerializer(serializers.ModelSerializer):
     class Meta :
         model = Message
-        fields = ['id', 'name', 'subject', 'message', 'date_added']
+        fields = ['id', 'name','email', 'subject', 'message', 'date_added']
 
 class ReadMessageSerializer(serializers.ModelSerializer):
     class Meta :
         model = Message
-        fields = ['id', 'name', 'subject', 'message', 'date_added', 'checked']
-        read_only_fields =  ['id', 'name', 'subject', 'message', 'date_added']
+        fields = ['id', 'name','email', 'subject', 'message', 'date_added', 'checked']
+        read_only_fields =  ['id','name', 'email', 'subject', 'message', 'date_added']
