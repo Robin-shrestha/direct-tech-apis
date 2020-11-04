@@ -29,6 +29,15 @@ class ReadMessageView(views.APIView):
         except:
             return Response(f'no messsage of id={id}', status=status.HTTP_204_NO_CONTENT)
     
+    def validate_ids(self, id_list):
+        for id in id_list:
+            try:
+                Message.objects.get(id=id)
+            except (Message.DoesNotExist):
+                raise status.HTTP_400_BAD_REQUEST
+            return True
+        
+    
     def get(self, request, id=None):
         if(id==None):
             item = Message.objects.all().order_by('-date_added')
@@ -47,16 +56,27 @@ class ReadMessageView(views.APIView):
         serializer = ReadMessageSerializer(message, partial=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def delete(self, request, id):
-        message = self.get_object(id)
-        message.delete()
-        return Response(status=status.HTTP_200_OK)
-
+    def delete(self, request, id=None):
+        if id is not None:
+            message = self.get_object(id)
+            message.delete()
+            return Response(status=status.HTTP_200_OK)
+        else:
+            data = request.data
+            ids = data['ids']
+            self.validate_ids(ids)
+            instances = []
+            for messageID in ids:
+                message = self.get_object(messageID)
+                message.delete()
+            return Response(status=status.HTTP_200_OK)
 
 
 class WriteMessageView(generics.CreateAPIView):
     queryset = Message.objects.all()
     serializer_class = WriteMessageSerializer
     permission_classes = [permissions.AllowAny]
+
+
 
 
