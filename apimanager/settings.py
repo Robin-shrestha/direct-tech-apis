@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv()
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = '&tt%w*@w-ede)3+blrp$7)3)#qfjm$(87d8xe_vj87qcdcc%i&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['directtechnepal.com']
 
 
 # Application definition
@@ -82,13 +82,9 @@ WSGI_APPLICATION = 'apimanager.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-      'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'directtech',
-        'USER':'postgres',
-        'PASSWORD': os.getenv('PASSWORD'),
-        'HOST':'127.0.0.1',
-        'PORT':'5432',
+       'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -117,16 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kathmandu'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
-DATETIME_FORMAT= 'N j Y, l, g:i A'
-
+DATETIME_FORMAT=  'd/m/Y P'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -139,12 +134,15 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
-    "DATETIME_FORMAT": "%Y-%m-%d, %H:%M:%S.",
+    "DATETIME_FORMAT": "%Y/%m/%d, %H:%M:%S.",
     "DATE_INPUT_FORMATS": ["%d-%m-%Y","%d/%m/%Y","%Y-%m-%d", "%Y/%m/%d"],
-    "DATE_FORMAT ": "%d-%m-%Y",
+    "DATE_FORMAT ": "%d/%m/%Y",
 }
 CORS_ALLOWED_ORIGINS = [
+
     "http://localhost:3000",
     "https://robin-shrestha.github.io",
-    "https://robin-shrestha.github.io",
+    "https://directtechnepal.com",
+    "http://directtechnepal.com",
+
 ]
